@@ -30,6 +30,13 @@ jobs:
           pip3 install --upgrade pip
           pip3 install mako
 
+      - name: Verify JPEG Installation
+        run: |
+          if ! dpkg -s libjpeg-dev > /dev/null 2>&1; then
+            echo "libjpeg-dev is not installed. Exiting."
+            exit 1
+          fi
+
       - name: Clean and Configure CMake for Android
         run: |
           rm -rf build-android
